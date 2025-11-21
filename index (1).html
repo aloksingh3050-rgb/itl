@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITL - Indian T20 League | The Game of Every Indian</title>
+    <meta name="description" content="India's most exciting upcoming T20 cricket league. Launching 2026 with 10 teams, 60+ matches, and national presence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B0D1A;
+            --dark-blue: #101529;
+            --gold: #F6C85F;
+            --electric-blue: #1A5AFF;
+            --white: #E9EEF5;
+            --muted: #BFC4D6;
+            --gold-glow: rgba(246, 200, 95, 0.3);
+            --blue-glow: rgba(26, 90, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 13, 26, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(246, 200, 95, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 0.5rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark-blue) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--gold-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, var(--blue-glow) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(26, 90, 255, 0.15) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .stadium-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(180deg, transparent 0%, rgba(246, 200, 95, 0.05) 50%, transparent 100%),
+                repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(246, 200, 95, 0.02) 100px, rgba(246, 200, 95, 0.02) 200px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(246, 200, 95, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px var(--gold-glow);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), #FFD700);
+            color: var(--navy);
+            box-shadow: 0 0 30px var(--gold-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--gold-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--electric-blue);
+            box-shadow: 0 0 20px var(--blue-glow);
+        }
+
+        .btn-secondary:hover {
+            background: var(--electric-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px var(--blue-glow);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(26, 90, 255, 0.1), rgba(246, 200, 95, 0.1));
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(246, 200, 95, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(246, 200, 95, 0.3);
+            border-color: var(--gold);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        /* Vision Mission Cards */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--electric-blue));
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            border-color: var(--gold);
+        }
+
+        .card-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+        }
+
+        .card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .quote-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(246, 200, 95, 0.1);
+            border-left: 4px solid var(--gold);
+            border-radius: 10px;
+            font-style: italic;
+            color: var(--white);
+        }
+
+        /* Market Opportunity */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+        }
+
+        .market-card {
+            background: linear-gradient(135deg, var(--dark-blue), var(--navy));
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .market-card:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(246, 200, 95, 0.2);
+        }
+
+        .market-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px var(--gold));
+        }
+
+        .market-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .market-label {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* Franchise Cards */
+        .franchise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .franchise-card {
+            background: rgba(26, 90, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(246, 200, 95, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .franchise-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold-glow), transparent);
+            transition: top 0.5s ease;
+        }
+
+        .franchise-card:hover::before {
+            top: 0;
+        }
+
+        .franchise-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .franchise-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .state-flag {
+            font-size: 3rem;
+        }
+
+        .franchise-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .franchise-features {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .franchise-features li {
+            padding: 0.5rem 0;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .franchise-features li::before {
+            content: '⚡';
+            color: var(--gold);
+        }
+
+        /* Investment Section */
+        .investment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(246, 200, 95, 0.1), rgba(26, 90, 255, 0.1));
+            padding: 4rem;
+            border-radius: 30px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(246, 200, 95, 0.2);
+        }
+
+        .investment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .investment-box {
+            text-align: center;
+        }
+
+        .investment-label {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 1rem;
+        }
+
+        .investment-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            text-shadow: 0 0 30px var(--gold-glow);
+        }
+
+        /* Allocation Chart */
+        .allocation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .allocation-item {
+            background: rgba(11, 13, 26, 0.5);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .allocation-item:hover {
+            transform: translateX(10px);
+            background: rgba(26, 90, 255, 0.1);
+        }
+
+        .allocation-percentage {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .allocation-label {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* Revenue Grid */
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .revenue-card {
+            background: linear-gradient(135deg, var(--dark-blue), rgba(26, 90, 255, 0.1));
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(246, 200, 95, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .revenue-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--gold-glow);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+
+        .revenue-card:hover::after {
+            width: 300%;
+            height: 300%;
+        }
+
+        .revenue-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .revenue-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .revenue-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .revenue-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 1200px;
+            margin: 4rem auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold), var(--electric-blue));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(26, 90, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(246, 200, 95, 0.3);
+        }
+
+        .timeline-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: var(--navy);
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px var(--gold-glow);
+            z-index: 2;
+        }
+
+        .timeline-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .timeline-desc {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Founder Section */
+        .founder-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--dark-blue), rgba(26, 90, 255, 0.15));
+            padding: 4rem;
+            border-radius: 30px;
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 40px var(--gold-glow);
+            background: linear-gradient(135deg, var(--gold), var(--electric-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            flex-shrink: 0;
+        }
+
+        .founder-details {
+            flex: 1;
+        }
+
+        .founder-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .founder-title {
+            font-size: 1.3rem;
+            color: var(--electric-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .founder-bio {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .founder-bio li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .founder-bio li::before {
+            content: '🏏';
+        }
+
+        .founder-signature {
+            margin-top: 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            font-style: italic;
+            opacity: 0.5;
+        }
+
+        /* Co-Founders Grid */
+        .co-founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 4rem auto 0;
+        }
+
+        .co-founder-card {
+            background: rgba(26, 90, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(246, 200, 95, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .co-founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--electric-blue));
+        }
+
+        .co-founder-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(246, 200, 95, 0.3);
+        }
+
+        .co-founder-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 20px var(--gold-glow));
+        }
+
+        .co-founder-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .co-founder-role {
+            font-size: 1.1rem;
+            color: var(--electric-blue);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .co-founder-expertise {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(26, 90, 255, 0.1);
+            padding: 4rem;
+            border-radius: 30px;
+            border: 2px solid var(--gold);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            color: var(--muted);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .cta-button {
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-blue);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(246, 200, 95, 0.2);
+            color: var(--muted);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 60px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-year {
+                left: 20px;
+                transform: translate(-50%, -50%);
+            }
+
+            .founder-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .investment-container {
+                padding: 2rem;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .stats-grid,
+            .vision-grid,
+            .market-grid,
+            .franchise-grid,
+            .revenue-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Particles Animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-30px) translateX(20px);
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <div class="logo">ITL</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#investment">Investment</a></li>
+                <li><a href="#future">Future</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="stadium-lights"></div>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">INDIAN T20 LEAGUE</h1>
+            <p class="hero-subtitle">THE GAME OF EVERY INDIAN</p>
+            <div class="hero-buttons">
+                <a href="#investment" class="btn btn-primary">Download Brochure</a>
+                <a href="#contact" class="btn btn-secondary">Become a Partner</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About League -->
+    <section class="section" id="about">
+        <h2 class="section-title fade-in">About The League</h2>
+        <p class="section-subtitle fade-in">India's most exciting upcoming T20 cricket league, launching 2026</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number" data-target="2026">0</div>
+                <div class="stat-label">Launch Year</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🏏</div>
+                <div class="stat-number" data-target="10">0</div>
+                <div class="stat-label">Teams</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🌍</div>
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">Cities</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-number" data-target="60">0</div>
+                <div class="stat-label">Matches</div>
+            </div>
+            <div class="stat-card fade-in">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-number" data-target="10">0</div>
+                <div class="stat-label">States</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section class="section" id="vision" style="background: linear-gradient(180deg, var(--navy), var(--dark-blue));">
+        <h2 class="section-title fade-in">Vision &amp; Mission</h2>
+        <p class="section-subtitle fade-in">Building India's most dynamic and inclusive T20 platform</p>
+        
+        <div class="vision-grid">
+            <div class="glass-card fade-in">
+                <div class="card-number">01</div>
+                <h3 class="card-title">VISION</h3>
+                <p class="card-text">To build India's most dynamic and inclusive T20 platform that celebrates cricket, empowers talent, and unites millions of fans across every corner of the nation.</p>
+                <div class="quote-box">
+                    "India doesn't just watch cricket – it lives cricket."
+                </div>
+            </div>
+            <div class="glass-card fade-in">
+                <div class="card-number">02</div>
+                <h3 class="card-title">MISSION</h3>
+                <p class="card-text">Empower young talent through world-class coaching and opportunities. Drive fan engagement with immersive experiences. Build sustainable business models for long-term growth.</p>
+                <div class="quote-box">
+                    "Every Indian deserves a chance to shine on the cricket field."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Opportunity -->
+    <section class="section" id="market">
+        <h2 class="section-title fade-in">Market Opportunity</h2>
+        <p class="section-subtitle fade-in">Cricket isn't just a game in India—it's a religion</p>
+        
+        <div class="market-grid">
+            <div class="market-card fade-in">
+                <div class="market-icon">💰</div>
+                <div class="market-value">₹15,000+</div>
+                <div class="market-label">Crore Cricket Market</div>
+            </div>
+            <div class="market-card fade-in">
+                <div class="market-icon">👥</div>
+                <div class="market-value">60%</div>
+                <div class="market-label">Youth Engagement</div>
+            </div>
+            <div class="market-card fade-in">
+                <div class="market-icon">📱</div>
+                <div class="market-value">45%</div>
+                <div class="market-label">OTT Growth</div>
+            </div>
+            <div class="market-card fade-in">
+                <div class="market-icon">🌐</div>
+                <div class="market-value">Rising</div>
+                <div class="market-label">Regional Fanbase</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Franchise Model -->
+    <section class="section" style="background: linear-gradient(180deg, var(--navy), var(--dark-blue));">
+        <h2 class="section-title fade-in">Franchise Model</h2>
+        <p class="section-subtitle fade-in">10 Teams • 10 States • One Vision</p>
+        
+        <div class="franchise-grid">
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Maharashtra</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Karnataka</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Tamil Nadu</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Gujarat</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Rajasthan</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Punjab</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">West Bengal</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Delhi NCR</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Telangana</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+            <div class="franchise-card fade-in">
+                <div class="franchise-header">
+                    <div class="state-flag">🏏</div>
+                    <div class="franchise-name">Uttar Pradesh</div>
+                </div>
+                <ul class="franchise-features">
+                    <li>Local Player Management</li>
+                    <li>Regional Sponsors</li>
+                    <li>Fanbase Building</li>
+                    <li>Central Media Support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Ask -->
+    <section class="section" id="investment">
+        <h2 class="section-title fade-in">Investment Opportunity</h2>
+        <p class="section-subtitle fade-in">Join us in building India's next cricket revolution</p>
+        
+        <div class="investment-container fade-in">
+            <div class="investment-grid">
+                <div class="investment-box">
+                    <div class="investment-label">Investment Required</div>
+                    <div class="investment-value">₹20-30 Cr</div>
+                </div>
+                <div class="investment-box">
+                    <div class="investment-label">Yearly Equity</div>
+                    <div class="investment-value">40%</div>
+                </div>
+                <div class="investment-box">
+                    <div class="investment-label">Long-term Equity</div>
+                    <div class="investment-value">25%</div>
+                </div>
+            </div>
+            
+            <h3 class="section-title" style="font-size: 2rem; margin-top: 3rem; margin-bottom: 2rem;">Fund Allocation</h3>
+            <div class="allocation-grid">
+                <div class="allocation-item">
+                    <div class="allocation-percentage">35%</div>
+                    <div class="allocation-label">Operations</div>
+                </div>
+                <div class="allocation-item">
+                    <div class="allocation-percentage">25%</div>
+                    <div class="allocation-label">Media &amp; Broadcasting</div>
+                </div>
+                <div class="allocation-item">
+                    <div class="allocation-percentage">20%</div>
+                    <div class="allocation-label">Franchise Development</div>
+                </div>
+                <div class="allocation-item">
+                    <div class="allocation-percentage">10%</div>
+                    <div class="allocation-label">Technology</div>
+                </div>
+                <div class="allocation-item">
+                    <div class="allocation-percentage">10%</div>
+                    <div class="allocation-label">Administration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Model -->
+    <section class="section" style="background: linear-gradient(180deg, var(--navy), var(--dark-blue));">
+        <h2 class="section-title fade-in">Revenue Streams</h2>
+        <p class="section-subtitle fade-in">Multiple channels for sustainable growth</p>
+        
+        <div class="revenue-grid">
+            <div class="revenue-card fade-in">
+                <div class="revenue-icon">🏟️</div>
+                <h3 class="revenue-title">Franchise Fees</h3>
+                <p class="revenue-desc">Team ownership and licensing</p>
+            </div>
+            <div class="revenue-card fade-in">
+                <div class="revenue-icon">🤝</div>
+                <h3 class="revenue-title">Sponsorships</h3>
+                <p class="revenue-desc">Brand partnerships &amp; deals</p>
+            </div>
+            <div class="revenue-card fade-in">
+                <div class="revenue-icon">📺</div>
+                <h3 class="revenue-title">Media Rights</h3>
+                <p class="revenue-desc">TV &amp; OTT broadcasting</p>
+            </div>
+            <div class="revenue-card fade-in">
+                <div class="revenue-icon">🎫</div>
+                <h3 class="revenue-title">Ticket Sales</h3>
+                <p class="revenue-desc">Stadium attendance revenue</p>
+            </div>
+            <div class="revenue-card fade-in">
+                <div class="revenue-icon">👕</div>
+                <h3 class="revenue-title">Merchandise</h3>
+                <p class="revenue-desc">Team jerseys &amp; products</p>
+            </div>
+            <div class="revenue-card fade-in">
+                <div class="revenue-icon">⚡</div>
+                <h3 class="revenue-title">Player Auctions</h3>
+                <p class="revenue-desc">Talent acquisition events</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Vision Timeline -->
+    <section class="section" id="future">
+        <h2 class="section-title fade-in">Future Vision</h2>
+        <p class="section-subtitle fade-in">Our roadmap to becoming India's premier T20 league</p>
+        
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Launch Phase</h3>
+                    <p class="timeline-desc">
+                        • 10 Teams from 10 States<br>
+                        • 100 Cities Covered<br>
+                        • Initial Franchise Setup<br>
+                        • First Season Launch
+                    </p>
+                </div>
+                <div class="timeline-year">2026</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">National Expansion</h3>
+                    <p class="timeline-desc">
+                        • National Sponsors Onboard<br>
+                        • Major OTT Deal Secured<br>
+                        • Enhanced Fan Engagement<br>
+                        • Merchandise Launch
+                    </p>
+                </div>
+                <div class="timeline-year">2027</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Growth Acceleration</h3>
+                    <p class="timeline-desc">
+                        • Expansion to 15 Teams<br>
+                        • 200+ Cities Coverage<br>
+                        • International Player Participation<br>
+                        • Academy Development
+                    </p>
+                </div>
+                <div class="timeline-year">2028</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Global Recognition</h3>
+                    <p class="timeline-desc">
+                        • Partnerships with UAE/UK Leagues<br>
+                        • International Broadcasting<br>
+                        • Global Fan Base<br>
+                        • World-class Infrastructure
+                    </p>
+                </div>
+                <div class="timeline-year">2029</div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Premier Status</h3>
+                    <p class="timeline-desc">
+                        • ₹250+ Cr Valuation<br>
+                        • Top-tier League Status<br>
+                        • 20+ Teams Nationwide<br>
+                        • Legacy Established
+                    </p>
+                </div>
+                <div class="timeline-year">2030</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="section" style="background: linear-gradient(180deg, var(--navy), var(--dark-blue));">
+        <h2 class="section-title fade-in">Leadership</h2>
+        <p class="section-subtitle fade-in">Driven by passion, backed by experience</p>
+        
+        <div class="founder-container fade-in">
+            <div class="founder-image">🏏</div>
+            <div class="founder-details">
+                <h3 class="founder-name">Lucky Rathod</h3>
+                <p class="founder-title">Founder &amp; CEO</p>
+                <ul class="founder-bio">
+                    <li>Former U-19 Cricket Player</li>
+                    <li>900+ Corporate Matches Organized</li>
+                    <li>5 Years in Cricket Management</li>
+                    <li>Strong Domestic Network</li>
+                    <li>Event Management Expertise</li>
+                </ul>
+                <div class="founder-signature">— Lucky Rathod</div>
+            </div>
+        </div>
+
+        <!-- Co-Founders Grid -->
+        <div class="co-founders-grid fade-in">
+            <div class="co-founder-card">
+                <div class="co-founder-icon">👔</div>
+                <h3 class="co-founder-name">Hemant Chauhan</h3>
+                <p class="co-founder-role">Businessman</p>
+                <ul class="co-founder-expertise" style="list-style: none; padding: 0; text-align: left; color: var(--muted); font-size: 0.95rem; line-height: 1.8;">
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> 15+ Years Business Leadership</li>
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> Corporate Strategy Expert</li>
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> Investment &amp; Financial Planning</li>
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> Partnership Development</li>
+                </ul>
+            </div>
+            <div class="co-founder-card">
+                <div class="co-founder-icon">🏗️</div>
+                <h3 class="co-founder-name">Vipin Sharma</h3>
+                <p class="co-founder-role">Construction Project Management Expert</p>
+                <ul class="co-founder-expertise" style="list-style: none; padding: 0; text-align: left; color: var(--muted); font-size: 0.95rem; line-height: 1.8;">
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> Stadium &amp; Venue Management</li>
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> Large-Scale Project Execution</li>
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> Operations &amp; Logistics Expert</li>
+                    <li style="padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--gold);">✓</span> Quality &amp; Safety Standards</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title fade-in">Get In Touch</h2>
+        <p class="section-subtitle fade-in">Ready to be part of India's cricket revolution?</p>
+        
+        <div class="contact-container fade-in">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span>support@itlt20.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🌐</span>
+                    <span>www.itlt20.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🇮🇳</span>
+                    <span>India</span>
+                </div>
+            </div>
+            <div class="cta-button">
+                <a href="#investment" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Join The League Revolution</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Indian T20 League (ITL). All rights reserved. | Building India's Cricket Future</p>
+    </footer>
+
+    <!-- Separate Files Download Notice -->
+    <div style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, var(--gold), var(--electric-blue)); padding: 15px 25px; border-radius: 50px; z-index: 9999; box-shadow: 0 10px 40px rgba(246, 200, 95, 0.4); cursor: pointer;" onclick="alert('This is a single-file HTML application. All CSS is in the <style> tag and all JavaScript is in the <script> tag at the bottom. To extract:\n\n1. CSS: Copy everything between <style> tags to a styles.css file\n2. JS: Copy everything between <script> tags to a script.js file\n3. HTML: Keep the HTML structure and link external files using:\n   <link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;>\n   <script src=&quot;script.js&quot;></script>')">
+        <span style="color: var(--navy); font-weight: 700; font-size: 14px;">📁 Extract Files Guide</span>
+    </div>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Animated counters
+        const counters = document.querySelectorAll('.stat-number');
+        const animateCounter = (counter) => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            updateCounter();
+        };
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Trigger counter animation for stat cards
+                    if (entry.target.classList.contains('stat-card')) {
+                        const counter = entry.target.querySelector('.stat-number');
+                        if (counter && !counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            animateCounter(counter);
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Particles animation
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 30;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'rgba(11, 13, 26, 0.98)';
+                navLinks.style.padding = '2rem';
+                navLinks.style.borderTop = '1px solid rgba(246, 200, 95, 0.2)';
+            }
+        });
+
+        // Add hover effects for cards
+        document.querySelectorAll('.glass-card, .franchise-card, .revenue-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
